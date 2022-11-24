@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>История покупок</title>
+</head>
+<body>
+
+    {% block content %}
+
+        <h1>История покупок</h1>
+
+        {% if purchase_history %}
+
+            {% for purchase in  purchase_history%}
+
+                <li>Дата покупки: {{ purchase.purchase_date }}</li>
+                <li>Наименование товара: {{ purchase.good.title }}</li>
+                <li>Артикул товара: {{ purchase.good.code }}</li>
+                <li>Количество товара: {{ purchase.good_quantity }} шт.</li>
+                <li>Сумма покупки: {{ purchase.purchase_sum }} руб.</li>
+                <hr>
+            {% endfor %}
+        <h3>Всего совершенно покупок на {{ overall_purchase_sum }} руб.</h3>
+        {% else %}
+            <h2>Покупок нет</h2>
+        {% endif %}
+
+    {% endblock %}
+
+
+</body>
+</html>

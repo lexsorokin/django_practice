@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказ</title>
+</head>
+<body>
+{% block content %}
+
+    {% block good %}
+        <h4>Ваш заказ:</h4>
+        <li>Наименование товара: {{ good.title }}</li>
+        <li>Код товара: {{ good.code }}</li>
+        <li>Цена товара: {{ good.price }} руб.</li>
+    {% endblock %}
+
+    {% block profile_info %}
+        <h4>Контактная информация:</h4>
+        <li>Имя: {{ request.user.profile.first_name }}</li>
+        <li>Фамилия: {{ request.user.profile.last_name }}</li>
+        <li>Электронная почта: {{ request.user.profile.email }}</li>
+        <li>Адрес доставки: {{ request.user.profile.address }}</li>
+    {% endblock %}
+
+    {% block confirm %}
+        <button type="submit" data-method="post">Подтвердить</button>
+    {% endblock %}
+
+{% endblock %}
+</body>
+</html>

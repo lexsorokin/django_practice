@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Маркет Плейс</title>
+</head>
+<body>
+{% block content %}
+
+    {% block app_user %}
+        {% if request.user.is_authenticated %}
+            <h3>Добро пожаловать, {{ request.user.profile.first_name }}!</h3>
+
+            {% if request.user.profile.status == 'VIP' %}
+                <h4>Поздравляем, вы теперь являетесь нашим VIP клиентом, что ровным счетом ничего не значит!</h4>
+            {% endif %}
+
+
+            <pre><a href="/users/profile/{{ request.user.profile.id }}/account_info">Мой профиль</a>      <a href="/users/logout">Выход</a></pre>
+
+        {% else %}
+
+            <pre><a href="/users/login">Войти</a>      <a href="/users/registration">Зарегистрироваться</a></pre>
+
+        {% endif %}
+    {% endblock %}
+
+    {% block stores %}
+        {% if store_list %}
+            <ul>
+                {% for store in store_list %}
+                    <li><h4>{{ store.title }}</h4></li>
+                    {{ store.description | slice:":200" }}...
+                    <p><a href="/market_place/store/{{ store.id }}">За покупками в' {{ store.title }}</a></p>
+                    <hr>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h2>Магазинов нет</h2>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}
+</body>
+</html>

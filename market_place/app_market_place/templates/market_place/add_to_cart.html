@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ good.code }}</title>
+</head>
+<body>
+    <h2>Добавить в корзине {{ good.title }}</h2>
+    <p>Название: {{ good.title }}</p>
+    <p>Артикул: {{ good.code }}</p>
+    <hr>
+    <p>Описание:
+        <p>{{ good.description }}</p></p>
+    <hr>
+    <p>Цена за шт.: {{ good.price }}</p>
+    <p>Остаток на складе: {{ good.remaining_stock }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить</button>
+    </form>
+</body>
+</html>

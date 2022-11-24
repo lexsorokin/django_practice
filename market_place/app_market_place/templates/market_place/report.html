@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет по самым продаваемым товарам</title>
+</head>
+<body>
+    <h2>Отчёт</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Применить</button>
+        </form>
+    <h2>{{ start_date }} - {{ end_date }}</h2>
+    {% if report_data %}
+        {% for purchased_good in report_data %}
+            <li>Название товара: {{purchased_good.title}}</li>
+            <li>Артикул товара: {{purchased_good.code}}</li>
+            <li>Цена товара за 1 шт.: {{purchased_good.title}}</li>
+            <li>Кол-во проданных единиц: {{ purchased_good.sum }}</li>
+            <hr>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

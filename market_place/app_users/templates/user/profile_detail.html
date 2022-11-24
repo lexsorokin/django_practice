@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой профиль</title>
+</head>
+<body>
+{% block content %}
+
+    {% block user_info %}
+        <h3>Мой профиль</h3>
+        <li>Имя: {{ user.profile.first_name }}</li>
+        <li>Фамилия: {{ user.profile.last_name }}</li>
+        <li>Электронная почта: {{ user.profile.email }}</li>
+        <li>Телефон: {{ user.profile.phone }}</li>
+        <li>Адрес: {{ user.profile.address }}</li>
+        <li>Баланс: {{ user.profile.balance }}</li>
+        <li>Статус: {{ user.profile.status }}</li>
+        <p><a href="/market_place/my_cart">Корзина</a></p>
+        <p><a href="/users/profile/{{ request.user.id }}/purchase_history">История покупок</a></p>
+        <hr>
+        <p><a href="/market_place/profile/deposit">Пополнить баланс</a></p>
+
+    {% endblock %}
+
+{% endblock %}
+</body>
+</html>

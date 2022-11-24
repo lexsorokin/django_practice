@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>Оплата</h1>
+    <h3>Ваш баланс: {{ profile.balance }} руб.</h3>
+    <h3>К оплате: {{ profile.payment_for_cart }} руб.</h3>
+    {% if profile.balance < profile.payment_for_cart %}
+        <h4>На вашем счету недостаточно средств...:(</h4>
+        <p><a href="/market_place/profile/deposit">Пополнить баланс</a></p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Опатить</button>
+        </form>
+    {% endif %}
+</body>
+</html>

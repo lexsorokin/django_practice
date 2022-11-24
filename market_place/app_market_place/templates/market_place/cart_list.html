@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+    {% if cart %}
+        <h1>Коризина</h1>
+        {% for ordered_good in cart %}
+            <li>Название товара: {{ ordered_good.good.title }}</li>
+            <li>Кол-во: {{ ordered_good.good_quantity }} шт.</li>
+            <li>Цена за 1 шт.: {{ ordered_good.good.price }} руб.</li>
+            <li>Цена за {{ ordered_good.good_quantity }} шт.: {{ ordered_good.ordered_good_price_sum }} руб.</li>
+            <hr>
+        {% endfor %}
+        <p><h3>Сумма к оплате: {{ cart_sum }} руб.</h3></p>
+        <p><a href = '/market_place/profile/{{ user.profile.id }}/cart_payment/'>Оплатить</a></p>
+    {% else %}
+        <h1>Корзина пуста</h1>
+    {% endif %}
+</body>
+</html>

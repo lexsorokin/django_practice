@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ store.title }}}</title>
+</head>
+<body>
+{% block content %}
+
+    {% block user_profile %}
+
+        {% if request.user.is_authenticated %}
+
+            <pre><a href="/users/profile/{{ request.user.profile.id }}/account_info">Мой профиль</a>      <a href="/users/logout">Выход</a></pre>
+
+        {% endif %}
+
+    {% endblock %}
+
+    {% block store_description %}
+        <h2>{{ store.title }}</h2>
+        <hr>
+        {{ store.description }}
+        <hr>
+    {% endblock %}
+
+    {% block goods %}
+        <ul>
+            {% for good in goods %}
+                    <p><li><h4>{{ good.title }} | Артикул: {{ good.code }}</h4></li></p>
+                    {{ good.description }}
+                    <p><h4>Цена: {{good.price}} руб.</h4></p>
+                    {% if request.user.is_authenticated and good.remaining_stock > 0 %}
+                        <a href="/market_place/good/add_to_cart/{{ good.id }}">Добавить в корзину</a>
+                    {% else %}
+                        <h4>Нет на складе</h4>
+                    {% endif %}
+                <hr>
+            {% endfor %}
+        </ul>
+    {% endblock %}
+
+{% endblock %}
+</body>
+</html>
